@@ -1,0 +1,8 @@
+import React, { useState } from "react";
+import { MessageSquarePlus, MoreHorizontal, Search, Trash2 } from "lucide-react";
+
+export default function ChatSidebar({ conversations, selectedId, onSelect, onNew, onRename, onDelete }) {
+  const [search, setSearch] = useState("");
+  const filtered = conversations.filter(item => item.title.toLowerCase().includes(search.toLowerCase()));
+  return <aside className="coach-sidebar"><div className="coach-sidebar-top"><div><p className="coach-kicker">Your workspace</p><h2>Conversations</h2></div><button aria-label="New chat" title="New chat" onClick={onNew}><MessageSquarePlus size={17} /></button></div><label className="coach-search"><Search size={14} /><input aria-label="Search conversations" placeholder="Search chats" value={search} onChange={event => setSearch(event.target.value)} /></label><div className="coach-history-list">{filtered.length ? filtered.map(item => <div className={`coach-history-item ${item._id === selectedId ? "is-active" : ""}`} key={item._id}><button onClick={() => onSelect(item._id)}><MessageSquarePlus size={14} /><span>{item.title}</span></button><div className="coach-history-actions"><button aria-label={`Rename ${item.title}`} title="Rename" onClick={() => onRename(item)}><MoreHorizontal size={15} /></button><button aria-label={`Delete ${item.title}`} title="Delete" onClick={() => onDelete(item)}><Trash2 size={13} /></button></div></div>) : <div className="coach-sidebar-empty">No saved conversations yet.<br />Your next question starts one.</div>}</div><div className="coach-sidebar-footer">Career guidance is educational and does not guarantee employment.</div></aside>;
+}
