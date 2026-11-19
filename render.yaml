@@ -1,0 +1,19 @@
+services:
+  - type: web
+    name: intellihire
+    runtime: node
+    plan: free
+    buildCommand: cd files/files/intellihire && npm ci && npm run build && cd ../.. && npm ci
+    startCommand: cd files/files && node server.js
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: JWT_SECRET
+        generateValue: true
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: MONGO_URI
+        sync: false
+      - key: CLIENT_ORIGIN
+        sync: false

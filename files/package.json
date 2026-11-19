@@ -1,0 +1,15 @@
+{
+  "name": "intellihire-workspace",
+  "private": true,
+  "scripts": {
+    "start": "node files/files/server.js",
+    "dev": "node files/files/server.js",
+    "start:backend": "node files/files/server.js",
+    "start:frontend": "npm --prefix files/intellihire start"
+  },
+  "dependencies": {
+    "mammoth": "^1.12.2",
+    "pdfjs-dist": "^6.3.289",
+    "tesseract.js": "^7.0.0"
+  }
+}
